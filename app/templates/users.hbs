@@ -1,0 +1,24 @@
+{{outlet}}
+
+<table class="border">
+  <tr>
+    <th>Name</th>
+    <th>Last Name</th>
+    <th>Age</th>
+  </tr>
+  {{#each model as |user|}}
+    <tr class="row" onClick={{action 'selectRow'}}>
+      <th>
+        {{user.firstName}}
+      </th>
+      <th>
+        {{user.lastName}}
+      </th>
+      <th>
+        {{format-age user.birthDate}}
+      </th>
+    <button onClick={{action 'destroyUser' user}}>Destroy</button>
+    </tr>
+  {{/each}}
+</table>
+
