@@ -1,24 +1,21 @@
-{{outlet}}
-
 <table class="border">
   <tr>
-    <th>Name</th>
-    <th>Last Name</th>
+    <th>Full Name</th>
     <th>Age</th>
   </tr>
-  {{#each usersArr as |user index|}}
-    <tr class={{class-row user.id}} onClick={{action 'selectRow'}}>
+  {{#each usersArr as |user|}}
+    <tr class={{class-row user.id}}>
       <th>
-        {{user.firstName}}
-      </th>
-      <th>
-        {{user.lastName}}
+        {{full-name user}}
       </th>
       <th>
         {{format-age user.birthDate}}
       </th>
     <button onClick={{action 'destroyUser' user}}>Destroy</button>
+    <input type="checkbox" class={{class-checkbox user.id}} onClick={{action 'select' user}}>
     </tr>
   {{/each}}
 </table>
+
+<button onClick={{action 'destroySelected' usersArr}}>Destroy Selected</button>
 

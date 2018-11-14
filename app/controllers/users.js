@@ -3,6 +3,7 @@ import Controller from '@ember/controller';
 export default Controller.extend({
 
   userDate: '',
+  checkedUsers: [],
 
   usersArr: [
     { id: 1,
@@ -38,8 +39,28 @@ export default Controller.extend({
       })
     },
 
-    selectRow() {
+    select(user) {
+      const checkbox = document.querySelector(`.checkbox${user.id}`)
 
+      if(checkbox.checked) {
+        this.checkedUsers.push(user);
+      } else {
+        this.checkedUsers.splice(this.checkedUsers.indexOf(user), 1);
+      }
+    },
+
+    destroySelected() {
+      let usersArr = this.get('usersArr');
+
+      for (let user of this.checkedUsers) {
+        usersArr.forEach((element) => {
+          if(element === user) {
+            let index = usersArr.indexOf(element);
+            this.get('usersArr').splice(index, 1);
+            document.querySelector(`.user${user.id}`).innerHTML = ''
+          }
+        })
+      }
     }
   }
 });
