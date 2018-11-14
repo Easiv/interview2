@@ -6,8 +6,8 @@
     <th>Last Name</th>
     <th>Age</th>
   </tr>
-  {{#each model as |user|}}
-    <tr class="row" onClick={{action 'selectRow'}}>
+  {{#each usersArr as |user index|}}
+    <tr class={{class-row user.id}} onClick={{action 'selectRow'}}>
       <th>
         {{user.firstName}}
       </th>
